@@ -6,7 +6,7 @@
         <DalamudApiLevel>12</DalamudApiLevel>
         <Description>A parsing plugin.</Description>
         <Copyright></Copyright>
-        <PackageProjectUrl>https://github.com/marzent/IINACT</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/chiangwill/IINACT</PackageProjectUrl>
     </PropertyGroup>
 
     <PropertyGroup>
