@@ -2,7 +2,8 @@
     <PropertyGroup>
         <Authors>Usagi</Authors>
         <Company>Dezent</Company>
-        <Version>2.10.0.9</Version>
+        <Version>2.10.1.0</Version>
+        <DalamudApiLevel>12</DalamudApiLevel>
         <Description>A parsing plugin.</Description>
         <Copyright></Copyright>
         <PackageProjectUrl>https://github.com/marzent/IINACT</PackageProjectUrl>
