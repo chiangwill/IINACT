@@ -19,7 +19,8 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: |
+          9.0.x
     - name: Download Dalamud
       run: |
         RELEASE_URL=$(curl -sL "https://raw.githubusercontent.com/yanmucorp/ghapi-json-generator/refs/heads/output/v2/repos/yanmucorp/Dalamud/releases/latest/data.json" | python3 -c "import json,sys; d=json.load(sys.stdin); print([a['browser_download_url'] for a in d['assets'] if a['name']=='latest.7z'][0])")
