@@ -1,4 +1,4 @@
-﻿// Copyright © 2023 Ravahn - All Rights Reserved
+// Copyright © 2023 Ravahn - All Rights Reserved
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see<http://www.gnu.org/licenses/>.
 
+using System.Collections.Generic;
+
 namespace Machina.FFXIV.Headers
 {
     /// <summary>
@@ -21,32 +23,67 @@ namespace Machina.FFXIV.Headers
 
     public class Server_MessageType
     {
-        public static Server_MessageType StatusEffectList => Opcodes.OpcodeManager.Instance.CurrentOpcodes["StatusEffectList"];
-        public static Server_MessageType StatusEffectList2 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["StatusEffectList2"];
-        public static Server_MessageType StatusEffectList3 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["StatusEffectList3"];
-        public static Server_MessageType BossStatusEffectList => Opcodes.OpcodeManager.Instance.CurrentOpcodes["BossStatusEffectList"];
-        public static Server_MessageType Ability1 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Ability1"];
-        public static Server_MessageType Ability8 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Ability8"];
-        public static Server_MessageType Ability16 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Ability16"];
-        public static Server_MessageType Ability24 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Ability24"];
-        public static Server_MessageType Ability32 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Ability32"];
-        public static Server_MessageType ActorCast => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorCast"];
-        public static Server_MessageType EffectResult => Opcodes.OpcodeManager.Instance.CurrentOpcodes["EffectResult"];
-        public static Server_MessageType EffectResultBasic => Opcodes.OpcodeManager.Instance.CurrentOpcodes["EffectResultBasic"];
-        public static Server_MessageType ActorControl => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorControl"];
-        public static Server_MessageType ActorControlSelf => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorControlSelf"];
-        public static Server_MessageType ActorControlTarget => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorControlTarget"];
-        public static Server_MessageType UpdateHpMpTp => Opcodes.OpcodeManager.Instance.CurrentOpcodes["UpdateHpMpTp"];
-        public static Server_MessageType PlayerSpawn => Opcodes.OpcodeManager.Instance.CurrentOpcodes["PlayerSpawn"];
-        public static Server_MessageType NpcSpawn => Opcodes.OpcodeManager.Instance.CurrentOpcodes["NpcSpawn"];
-        public static Server_MessageType NpcSpawn2 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["NpcSpawn2"];
-        public static Server_MessageType ActorMove => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorMove"];
-        public static Server_MessageType ActorSetPos => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorSetPos"];
-        public static Server_MessageType ActorGauge => Opcodes.OpcodeManager.Instance.CurrentOpcodes["ActorGauge"];
-        public static Server_MessageType PresetWaymark => Opcodes.OpcodeManager.Instance.CurrentOpcodes["PresetWaymark"];
-        public static Server_MessageType Waymark => Opcodes.OpcodeManager.Instance.CurrentOpcodes["Waymark"];
-        public static Server_MessageType SystemLogMessage => Opcodes.OpcodeManager.Instance.CurrentOpcodes["SystemLogMessage"];
-        public static Server_MessageType StatusEffectListForay3 => Opcodes.OpcodeManager.Instance.CurrentOpcodes["StatusEffectListForay3"];
+        public static Server_MessageType StatusEffectList;
+        public static Server_MessageType StatusEffectList2;
+        public static Server_MessageType StatusEffectList3;
+        public static Server_MessageType BossStatusEffectList;
+        public static Server_MessageType Ability1;
+        public static Server_MessageType Ability8;
+        public static Server_MessageType Ability16;
+        public static Server_MessageType Ability24;
+        public static Server_MessageType Ability32;
+        public static Server_MessageType ActorCast;
+        public static Server_MessageType EffectResult;
+        public static Server_MessageType EffectResultBasic;
+        public static Server_MessageType ActorControl;
+        public static Server_MessageType ActorControlSelf;
+        public static Server_MessageType ActorControlTarget;
+        public static Server_MessageType UpdateHpMpTp;
+        public static Server_MessageType PlayerSpawn;
+        public static Server_MessageType NpcSpawn;
+        public static Server_MessageType NpcSpawn2;
+        public static Server_MessageType ActorMove;
+        public static Server_MessageType ActorSetPos;
+        public static Server_MessageType ActorGauge;
+        public static Server_MessageType PresetWaymark;
+        public static Server_MessageType Waymark;
+        public static Server_MessageType SystemLogMessage;
+        public static Server_MessageType StatusEffectListForay3;
+
+        internal static void Initialize(Dictionary<string, ushort> opcodes)
+        {
+            StatusEffectList = Get(opcodes, "StatusEffectList");
+            StatusEffectList2 = Get(opcodes, "StatusEffectList2");
+            StatusEffectList3 = Get(opcodes, "StatusEffectList3");
+            BossStatusEffectList = Get(opcodes, "BossStatusEffectList");
+            Ability1 = Get(opcodes, "Ability1");
+            Ability8 = Get(opcodes, "Ability8");
+            Ability16 = Get(opcodes, "Ability16");
+            Ability24 = Get(opcodes, "Ability24");
+            Ability32 = Get(opcodes, "Ability32");
+            ActorCast = Get(opcodes, "ActorCast");
+            EffectResult = Get(opcodes, "EffectResult");
+            EffectResultBasic = Get(opcodes, "EffectResultBasic");
+            ActorControl = Get(opcodes, "ActorControl");
+            ActorControlSelf = Get(opcodes, "ActorControlSelf");
+            ActorControlTarget = Get(opcodes, "ActorControlTarget");
+            UpdateHpMpTp = Get(opcodes, "UpdateHpMpTp");
+            PlayerSpawn = Get(opcodes, "PlayerSpawn");
+            NpcSpawn = Get(opcodes, "NpcSpawn");
+            NpcSpawn2 = Get(opcodes, "NpcSpawn2");
+            ActorMove = Get(opcodes, "ActorMove");
+            ActorSetPos = Get(opcodes, "ActorSetPos");
+            ActorGauge = Get(opcodes, "ActorGauge");
+            PresetWaymark = Get(opcodes, "PresetWaymark");
+            Waymark = Get(opcodes, "Waymark");
+            SystemLogMessage = Get(opcodes, "SystemLogMessage");
+            StatusEffectListForay3 = Get(opcodes, "StatusEffectListForay3");
+        }
+
+        private static Server_MessageType Get(Dictionary<string, ushort> opcodes, string key)
+        {
+            return opcodes.TryGetValue(key, out ushort value) ? value : (ushort)0;
+        }
 
         public ushort InternalValue { get; private set; }
 

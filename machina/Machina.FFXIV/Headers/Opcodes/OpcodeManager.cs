@@ -74,6 +74,8 @@ namespace Machina.FFXIV.Headers.Opcodes
             GameRegion = region;
             CurrentOpcodes = _opcodes[GameRegion];
 
+            global::Machina.FFXIV.Headers.Server_MessageType.Initialize(CurrentOpcodes);
+
             System.Diagnostics.Trace.WriteLine($"Using FFXIV Opcodes for game region {region}", "Machina");
         }
     }
