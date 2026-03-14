@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFramework>net9.0-windows</TargetFramework>
+        <TargetFramework>net10.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <PlatformTarget>x64</PlatformTarget>
@@ -21,7 +21,6 @@
         <LangVersion>12</LangVersion>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-        <AssetTargetFallback>net10.0-windows;net10.0</AssetTargetFallback>
     </PropertyGroup>
 
     <ItemGroup>
