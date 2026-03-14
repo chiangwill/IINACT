@@ -39,7 +39,7 @@ public sealed class Plugin : IDalamudPlugin
     private TextToSpeechProvider TextToSpeechProvider { get; }
     private MainWindow MainWindow { get; }
     internal FileDialogManager FileDialogManager { get; }
-    private ZoneDownHookManager ZoneDownHookManager { get; }
+    private ZoneDownHookManager? ZoneDownHookManager { get; }
     private IpcProviders IpcProviders { get; }
 
     private FfxivActPluginWrapper FfxivActPluginWrapper { get; }
@@ -80,8 +80,11 @@ public sealed class Plugin : IDalamudPlugin
             _ => GameRegion.Global
         });
 
-        var createZoneDownHookManager = Task.Run(() 
-            => new ZoneDownHookManager(NotificationManager, GameInteropProvider));
+        var createZoneDownHookManager = Task.Run<ZoneDownHookManager?>(() =>
+        {
+            try { return new ZoneDownHookManager(NotificationManager, GameInteropProvider); }
+            catch (Exception ex) { Log.Warning(ex, "[ZoneDownHookManager] Failed to initialize (unsupported game version), skipping."); return null; }
+        });
         Version = Assembly.GetExecutingAssembly().GetName().Version!;
 
         FileDialogManager = new FileDialogManager();
@@ -136,7 +139,7 @@ public sealed class Plugin : IDalamudPlugin
         ClientState.EnterPvP += EnterPvP;
         ClientState.LeavePvP += LeavePvP;
 
-        ZoneDownHookManager = createZoneDownHookManager.Result;
+        ZoneDownHookManager = createZoneDownHookManager.GetAwaiter().GetResult();
     }
 
     public void Dispose()
@@ -144,7 +147,7 @@ public sealed class Plugin : IDalamudPlugin
         ClientState.EnterPvP -= EnterPvP;
         ClientState.LeavePvP -= LeavePvP;
         IpcProviders.Dispose();
-        ZoneDownHookManager.Dispose();
+        ZoneDownHookManager?.Dispose();
         
         FfxivActPluginWrapper.Dispose();
         OverlayPlugin.DeInitPlugin();
