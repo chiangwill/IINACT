@@ -2,7 +2,7 @@
     <PropertyGroup>
         <Authors>Usagi</Authors>
         <Company>Dezent</Company>
-        <Version>2.10.1.6</Version>
+        <Version>2.10.1.7</Version>
         <Description>A parsing plugin.</Description>
         <Copyright></Copyright>
         <PackageProjectUrl>https://github.com/chiangwill/IINACT</PackageProjectUrl>
@@ -21,7 +21,6 @@
         <LangVersion>12</LangVersion>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-        <AssetTargetFallback>net10.0-windows;net10.0</AssetTargetFallback>
     </PropertyGroup>
 
     <ItemGroup>
@@ -31,7 +30,6 @@
         </PackageReference>
         <PackageReference Include="NAudio" Version="2.2.1" />
         <PackageReference Include="System.Speech" Version="10.0.0" />
-        <PackageReference Include="Unscrambler.XIV" Version="7.45.1" />
     </ItemGroup>
 
     <ItemGroup>

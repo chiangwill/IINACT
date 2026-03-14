@@ -6,7 +6,6 @@ using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using IINACT.Network;
 using IINACT.Windows;
 using Machina.FFXIV;
 using Machina.FFXIV.Headers.Opcodes;
@@ -39,7 +38,6 @@ public sealed class Plugin : IDalamudPlugin
     private TextToSpeechProvider TextToSpeechProvider { get; }
     private MainWindow MainWindow { get; }
     internal FileDialogManager FileDialogManager { get; }
-    private ZoneDownHookManager? ZoneDownHookManager { get; }
     private IpcProviders IpcProviders { get; }
 
     private FfxivActPluginWrapper FfxivActPluginWrapper { get; }
@@ -80,11 +78,6 @@ public sealed class Plugin : IDalamudPlugin
             _ => GameRegion.Global
         });
 
-        var createZoneDownHookManager = Task.Run<ZoneDownHookManager?>(() =>
-        {
-            try { return new ZoneDownHookManager(NotificationManager, GameInteropProvider); }
-            catch (Exception ex) { Log.Warning(ex, "[ZoneDownHookManager] Failed to initialize (unsupported game version), skipping."); return null; }
-        });
         Version = Assembly.GetExecutingAssembly().GetName().Version!;
 
         FileDialogManager = new FileDialogManager();
@@ -139,7 +132,6 @@ public sealed class Plugin : IDalamudPlugin
         ClientState.EnterPvP += EnterPvP;
         ClientState.LeavePvP += LeavePvP;
 
-        ZoneDownHookManager = createZoneDownHookManager.GetAwaiter().GetResult();
     }
 
     public void Dispose()
@@ -147,7 +139,6 @@ public sealed class Plugin : IDalamudPlugin
         ClientState.EnterPvP -= EnterPvP;
         ClientState.LeavePvP -= LeavePvP;
         IpcProviders.Dispose();
-        ZoneDownHookManager?.Dispose();
         
         FfxivActPluginWrapper.Dispose();
         OverlayPlugin.DeInitPlugin();
