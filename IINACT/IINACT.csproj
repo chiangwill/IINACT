@@ -21,6 +21,7 @@
         <LangVersion>12</LangVersion>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+        <AssetTargetFallback>net10.0-windows;net10.0</AssetTargetFallback>
     </PropertyGroup>
 
     <ItemGroup>
