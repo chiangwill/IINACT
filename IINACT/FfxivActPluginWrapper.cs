@@ -13,7 +13,6 @@ using FFXIV_ACT_Plugin.Logfile;
 using FFXIV_ACT_Plugin.Memory;
 using FFXIV_ACT_Plugin.Memory.MemoryProcessors;
 using FFXIV_ACT_Plugin.Memory.MemoryReader;
-using FFXIV_ACT_Plugin.Memory.Models.Global;
 using FFXIV_ACT_Plugin.Parse;
 using FFXIV_ACT_Plugin.Resource;
 using IINACT.Network;
@@ -124,8 +123,8 @@ public partial class FfxivActPluginWrapper : IDisposable
         mobArraySize = mobArrayProcessor._internalMmobArray.Length;
         var combatantProcessor = (CombatantProcessor)combatantManager._combatantProcessor;
         combatantBufferSize = ((ReadCombatant)combatantProcessor._readCombatant)._buffer.Length;
-        combatantSize = sizeof(CombatantStruct);
-        mobData = Marshal.AllocHGlobal((mobArraySize * combatantSize) + (combatantBufferSize - combatantSize));
+        combatantSize = combatantBufferSize;
+        mobData = Marshal.AllocHGlobal(mobArraySize * combatantSize);
         mobDataOffsets = new nint[mobArraySize];
         for (var i = 0; i < mobArraySize; i++)
             mobDataOffsets[i] = mobData + (i * combatantSize);
